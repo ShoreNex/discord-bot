@@ -1,7 +1,14 @@
 {
+  "name": "your-project-name",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
-    "@octokit/rest": "^21.0.2",
-    "discord.js": "^14.16.3",
-    "dotenv": "^16.4.5"
+    "discord.js": "^14.x.x",
+    "@octokit/rest": "^18.x.x",
+    "dotenv": "^10.x.x"
   }
 }
