@@ -1,6 +1,14 @@
-require('dotenv').config();
-const { Client, GatewayIntentBits, Events, EmbedBuilder } = require('discord.js');
-const { Octokit } = require('@octokit/rest');
+import { config } from 'dotenv';
+config(); // Load environment variables
+
+import { Client, GatewayIntentBits, Events, EmbedBuilder } from 'discord.js';
+import { Octokit } from '@octokit/rest';
+
+// Check if tokens are loaded correctly
+if (!process.env.GITHUB_TOKEN || !process.env.DISCORD_TOKEN) {
+    console.error('Environment variables GITHUB_TOKEN or DISCORD_TOKEN not set.');
+    process.exit(1);
+}
 
 const client = new Client({
     intents: [
@@ -53,4 +61,6 @@ client.on(Events.MessageCreate, async (message) => {
     }
 });
 
-client.login(process.env.DISCORD_TOKEN);
+client.login(process.env.DISCORD_TOKEN).catch(error => {
+    console.error('Error logging in to Discord:', error);
+});
